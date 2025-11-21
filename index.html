@@ -3,12 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <title>Superhero Lookup</title>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <h1>Superhero Lookup</h1>
-    <button id="search">Search</button>
-    <div id="result"></div>
+
+    <form id="search_box"> 
+      <input type="text" id="Search_bar" placeholder="Enter suprhero name" />
+
+      <button type="submit" id="search_button">Search</button>
+
+    </form>
+
+    <h1 id="Result_title">Result</h1>
+    <hr id="divider">
+    
+    <div id="result">
+
+    </div>
 
     <script src="app.js"></script>
   </body>

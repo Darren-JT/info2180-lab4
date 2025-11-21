@@ -63,10 +63,49 @@ $superheroes = [
   ], 
 ];
 
-?>
+$name=$_GET['name'] ?? '';
 
-<ul>
-<?php foreach ($superheroes as $superhero): ?>
-  <li><?= $superhero['alias']; ?></li>
-<?php endforeach; ?>
-</ul>
+if ($name===''){
+
+foreach ($superheroes as $superhero){?>
+
+    <li><?= $superhero['alias']; ?></li>
+    
+<?php } 
+  
+
+} else {
+    $flag = false;
+
+    foreach ($superheroes as $hero) {
+
+        if (
+
+            //had to research strcasecmp function to make the search case insensitive
+            //Wasnt mentioned in the lab but I thouhght it would be a good addition
+            strcasecmp($hero['name'], $name) === 0 or
+            strcasecmp($hero['alias'], $name) === 0
+        ) {
+
+
+            echo "<h3>" . strtoupper($hero['alias']) . "</h3>";
+            echo "<h4>A.K.A " . strtoupper($hero['name']) . "</h4>";
+            echo "<p>{$hero['biography']}</p>";
+
+            $flag = true;
+
+            break;
+
+
+
+
+        }
+    }
+        if (!$flag) {
+
+
+        echo '<h2 style="color: #FF0000;"> SUPERHERO NOT FOUND <h2>';
+    }
+}
+
+?>

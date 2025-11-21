@@ -1,15 +1,42 @@
-document.addEventListener("DOMContentLoaded", () => {
+console.log('APP.JS VERSION 2 - FILE LOADED');
 
-  const button = document.getElementById("search");
+document.addEventListener('DOMContentLoaded', function () {
+  var form = document.getElementById('search_box');
+  var result = document.getElementById('result');
+  var input = document.getElementById('Search_bar');
 
-  button.addEventListener("click", () => {
-    fetch("superheroes.php")
+  
+
+
+
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    var raw = input ? input.value : '';
+
+
+    var val = String(raw).trim();
+
+    val = val.replace(/[^\w\s]/gi, '');
     
-      .then((response) => response.text())
+    console.log('Submitting search for:', val);
+
+    fetch('superheroes.php?name=' + encodeURIComponent(val))
 
 
-      .then((data) => {
+      .then(function (response) {
 
-        alert(data); })
-      .catch((error) => console.error("Error:", error));});
+        return response.text();
+      })
+
+      
+      .then(function (data) {
+
+
+
+        result.innerHTML = data;
+      });
+
+  });
+
 });
